@@ -49,8 +49,8 @@ export default function Register() {
         <Image
           src="/logo.png"
           alt="Vesi Living"
-          width={180}
-          height={116}
+          width={398}
+          height={256}
           className="object-contain"
           unoptimized
           priority
