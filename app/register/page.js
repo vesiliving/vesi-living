@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-export default function Home() {
+export default function Register() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [form, setForm] = useState({ name: '', email: '' });
+  const [form, setForm] = useState({ name: '', email: '', orderNumber: '' });
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,7 +23,7 @@ export default function Home() {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, listType: 'waitlist' }),
+        body: JSON.stringify({ ...form, listType: 'customer' }),
       });
 
       const data = await res.json();
@@ -63,13 +63,13 @@ export default function Home() {
           className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-2xl mx-auto"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
         >
-          Something Pure Is Coming
+          Thank You For Your Purchase
         </h1>
 
         <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#B07D5A]" />
 
-        <p className="text-[#9E9791] text-base md:text-lg max-w-lg mx-auto leading-relaxed font-light">
-          Be the first to experience Vesi Living — Nordic-designed filtration for your daily shower ritual. Join the waitlist for early access and an exclusive launch discount.
+        <p className="text-[#9E9791] text-base md:text-lg max-w-md mx-auto leading-relaxed font-light">
+          Register your Vesi Showerhead and claim your free replacement filter — our gift to you.
         </p>
 
         <div className="mt-12 flex justify-center">
@@ -107,10 +107,10 @@ export default function Home() {
                 className="text-3xl md:text-4xl font-light text-[#0D0D0D] mb-4"
                 style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
               >
-                You&apos;re on the list.
+                You&apos;re registered.
               </h2>
               <p className="text-[#9E9791] text-sm leading-relaxed max-w-xs mx-auto">
-                We&apos;ll be in touch before launch with your exclusive discount.
+                Check your inbox — we&apos;ll be in touch shortly with your free filter details.
               </p>
             </div>
           ) : (
@@ -119,13 +119,13 @@ export default function Home() {
                 className="text-2xl font-light text-[#0D0D0D] mb-8 text-center"
                 style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
               >
-                Join the waitlist
+                Claim your free filter
               </h2>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-xs tracking-widest uppercase text-[#9E9791] font-light">
-                    First Name
+                    Full Name
                   </label>
                   <input
                     type="text"
@@ -134,7 +134,7 @@ export default function Home() {
                     value={form.name}
                     onChange={handleChange}
                     className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#B07D5A] placeholder:text-[#9E9791]/40"
-                    placeholder="Jane"
+                    placeholder="Jane Smith"
                   />
                 </div>
 
@@ -153,6 +153,24 @@ export default function Home() {
                   />
                 </div>
 
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs tracking-widest uppercase text-[#9E9791] font-light">
+                    Amazon Order Number
+                  </label>
+                  <input
+                    type="text"
+                    name="orderNumber"
+                    required
+                    value={form.orderNumber}
+                    onChange={handleChange}
+                    className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#B07D5A] placeholder:text-[#9E9791]/40"
+                    placeholder="114-1234567-1234567"
+                  />
+                  <p className="text-[#9E9791] text-xs mt-0.5">
+                    Found in Your Orders on Amazon
+                  </p>
+                </div>
+
                 {error && (
                   <p className="text-red-500 text-xs mt-1">{error}</p>
                 )}
@@ -162,7 +180,7 @@ export default function Home() {
                   disabled={loading}
                   className="mt-4 w-full bg-[#0D0D0D] text-[#F5F3EF] py-4 text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 hover:bg-[#B07D5A] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
-                  {loading ? 'Sending...' : 'Join the Waitlist'}
+                  {loading ? 'Sending...' : 'Claim My Free Filter'}
                 </button>
               </form>
             </>

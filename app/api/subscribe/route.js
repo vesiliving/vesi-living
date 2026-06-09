@@ -1,9 +1,18 @@
 export async function POST(request) {
-  const { name, email, orderNumber } = await request.json();
+  console.log('BREVO_API_KEY:', process.env.BREVO_API_KEY);
 
-  if (!name || !email || !orderNumber) {
+  const { name, email, orderNumber, listType } = await request.json();
+
+  if (!name || !email) {
     return Response.json({ error: 'Missing required fields.' }, { status: 400 });
   }
+
+  // Require order number only for customer registrations
+  if (listType === 'customer' && !orderNumber) {
+    return Response.json({ error: 'Missing required fields.' }, { status: 400 });
+  }
+
+  const tag = listType === 'customer' ? 'CUSTOMER' : 'WAITLIST';
 
   const res = await fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
@@ -16,12 +25,14 @@ export async function POST(request) {
       attributes: {
         FIRSTNAME: name,
       },
+      tags: [tag],
       updateEnabled: true,
     }),
   });
 
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
+    console.log('Brevo error — status:', res.status, 'body:', JSON.stringify(body));
     return Response.json(
       { error: body.message || 'Failed to register. Please try again.' },
       { status: res.status }
