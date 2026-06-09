@@ -72,16 +72,6 @@ export default function Register() {
           Register your Vesi Showerhead and claim your free replacement filter — our gift to you.
         </p>
 
-        <div className="mt-12 flex justify-center">
-          <Image
-            src="/product.jpg"
-            alt="Vesi Living Filtered Shower Head"
-            width={400}
-            height={500}
-            className="object-contain"
-            priority
-          />
-        </div>
       </section>
 
       {/* Form / Success */}

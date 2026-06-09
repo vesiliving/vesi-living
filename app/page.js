@@ -72,16 +72,6 @@ export default function Home() {
           Be the first to experience Vesi Living — Nordic-designed filtration for your daily shower ritual. Join the waitlist for early access and an exclusive launch discount.
         </p>
 
-        <div className="mt-12 flex justify-center">
-          <Image
-            src="/product.jpg"
-            alt="Vesi Living Filtered Shower Head"
-            width={400}
-            height={500}
-            className="object-contain"
-            priority
-          />
-        </div>
       </section>
 
       {/* Form / Success */}
