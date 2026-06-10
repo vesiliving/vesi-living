@@ -9,12 +9,12 @@ export default function OurStory() {
     <div className="flex flex-col min-h-screen">
 
       {/* Header */}
-      <header className="bg-[#0D0D0D] pt-10 pb-4 flex justify-center items-center">
+      <header className="bg-[#0D0D0D] pt-6 pb-3 flex justify-center items-center">
         <Image src="/logo.png" alt="Vesi Living" width={398} height={256} className="object-contain" unoptimized priority />
       </header>
 
       {/* Hero */}
-      <section className="bg-[#0D0D0D] px-6 pt-4 pb-16 text-center">
+      <section className="bg-[#0D0D0D] px-6 pt-3 pb-10 text-center">
         <h1
           className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-3xl mx-auto"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
