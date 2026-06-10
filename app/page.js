@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 
 export default function Home() {
   const [submitted, setSubmitted] = useState(false);
@@ -46,15 +45,17 @@ export default function Home() {
 
       {/* Header */}
       <header className="bg-[#0D0D0D] pt-10 pb-4 flex justify-center items-center">
-        <Image
-          src="/logo.png"
-          alt="Vesi Living"
-          width={398}
-          height={256}
-          className="object-contain"
-          unoptimized
-          priority
-        />
+        <div className="text-center select-none">
+          <p
+            className="text-[88px] leading-none font-light tracking-widest text-[#F5F3EF]"
+            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
+          >
+            vesi
+          </p>
+          <p className="text-[11px] tracking-[0.55em] font-light text-[#B07D5A] uppercase mt-1">
+            Living
+          </p>
+        </div>
       </header>
 
       {/* Hero */}
