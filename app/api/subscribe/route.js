@@ -12,7 +12,13 @@ export async function POST(request) {
     return Response.json({ error: 'Missing required fields.' }, { status: 400 });
   }
 
-  const tag = listType === 'customer' ? 'CUSTOMER' : 'WAITLIST';
+  let tag;
+  if (listType === 'customer') tag = 'CUSTOMER';
+  else if (listType === 'contact') tag = 'CONTACT';
+  else tag = 'WAITLIST';
+
+  const attributes = { FIRSTNAME: name };
+  if (orderNumber) attributes.ORDER_NUMBER = orderNumber;
 
   const res = await fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
@@ -22,9 +28,7 @@ export async function POST(request) {
     },
     body: JSON.stringify({
       email,
-      attributes: {
-        FIRSTNAME: name,
-      },
+      attributes,
       tags: [tag],
       updateEnabled: true,
     }),
