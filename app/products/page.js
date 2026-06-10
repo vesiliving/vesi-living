@@ -74,7 +74,7 @@ export default function Products() {
         </h1>
         <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
         <p className="text-[#9E9791] text-base max-w-md mx-auto leading-relaxed font-light">
-          Two finishes. One standard of filtration. Find the Vesi showerhead that fits your space.
+          Three finishes. One standard of filtration.<br />Find the Vesi Showerhead that fits your space.
         </p>
       </section>
 
