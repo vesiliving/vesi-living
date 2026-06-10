@@ -21,7 +21,7 @@ export default function OurStory() {
         >
           Where Nordic Design Meets Water Science
         </h1>
-        <div className="mx-auto mt-6 w-12 h-px bg-[#B07D5A]" />
+        <div className="mx-auto mt-6 w-12 h-px bg-[#C4885A]" />
       </section>
 
       {/* Editorial sections */}
@@ -30,7 +30,7 @@ export default function OurStory() {
 
           {/* Section 1 */}
           <div>
-            <p className="text-xs tracking-[0.3em] uppercase text-[#B07D5A] mb-6 font-light">The Idea</p>
+            <p className="text-xs tracking-[0.3em] uppercase text-[#C4885A] mb-6 font-light">The Idea</p>
             <h2
               className="text-2xl md:text-3xl font-light text-[#F5F3EF] mb-6 leading-snug"
               style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
@@ -55,7 +55,7 @@ export default function OurStory() {
 
           {/* Section 2 */}
           <div>
-            <p className="text-xs tracking-[0.3em] uppercase text-[#B07D5A] mb-6 font-light">The Science</p>
+            <p className="text-xs tracking-[0.3em] uppercase text-[#C4885A] mb-6 font-light">The Science</p>
             <h2
               className="text-2xl md:text-3xl font-light text-[#F5F3EF] mb-6 leading-snug"
               style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}

@@ -45,7 +45,7 @@ export default function Blog() {
         >
           Insights on Water, Wellness &amp; Nordic Living
         </h1>
-        <div className="mx-auto mt-6 w-12 h-px bg-[#B07D5A]" />
+        <div className="mx-auto mt-6 w-12 h-px bg-[#C4885A]" />
       </section>
 
       {/* Posts */}
@@ -63,7 +63,7 @@ export default function Blog() {
               <p className="text-[#9E9791] text-sm leading-relaxed font-light mb-6">{post.excerpt}</p>
               <a
                 href="#"
-                className="text-xs tracking-[0.2em] uppercase text-[#B07D5A] font-light hover:text-[#0D0D0D] transition-colors duration-200"
+                className="text-xs tracking-[0.2em] uppercase text-[#C4885A] font-light hover:text-[#0D0D0D] transition-colors duration-200"
               >
                 Read More
               </a>

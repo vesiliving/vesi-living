@@ -28,8 +28,8 @@ export default function NavBar() {
                 href={href}
                 className={`text-[10px] tracking-[0.22em] uppercase font-light transition-colors duration-200 ${
                   pathname === href
-                    ? 'text-[#B07D5A]'
-                    : 'text-[#F5F3EF] hover:text-[#B07D5A]'
+                    ? 'text-[#C4885A]'
+                    : 'text-[#F5F3EF] hover:text-[#C4885A]'
                 }`}
               >
                 {label}
@@ -60,8 +60,8 @@ export default function NavBar() {
                 onClick={() => setOpen(false)}
                 className={`text-[11px] tracking-[0.22em] uppercase font-light transition-colors duration-200 ${
                   pathname === href
-                    ? 'text-[#B07D5A]'
-                    : 'text-[#F5F3EF] hover:text-[#B07D5A]'
+                    ? 'text-[#C4885A]'
+                    : 'text-[#F5F3EF] hover:text-[#C4885A]'
                 }`}
               >
                 {label}

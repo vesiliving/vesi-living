@@ -13,7 +13,7 @@ function ProductCard({ name, finish, description, amazonUrl }) {
       </div>
       {/* Details */}
       <div className="p-8 flex flex-col flex-1">
-        <p className="text-xs tracking-[0.25em] uppercase text-[#B07D5A] font-light mb-2">{finish}</p>
+        <p className="text-xs tracking-[0.25em] uppercase text-[#C4885A] font-light mb-2">{finish}</p>
         <h3
           className="text-xl font-light text-[#0D0D0D] mb-4 leading-snug"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
@@ -32,7 +32,7 @@ function ProductCard({ name, finish, description, amazonUrl }) {
             href={amazonUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#B07D5A] text-[#F5F3EF] text-xs tracking-[0.2em] uppercase font-light px-6 py-3 transition-colors duration-300 hover:bg-[#0D0D0D]"
+            className="bg-[#C4885A] text-[#F5F3EF] text-xs tracking-[0.2em] uppercase font-light px-6 py-3 transition-colors duration-300 hover:bg-[#0D0D0D]"
           >
             View on Amazon
           </a>
@@ -59,7 +59,7 @@ export default function Products() {
         >
           Designed to Perform. Built to Last.
         </h1>
-        <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#B07D5A]" />
+        <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
         <p className="text-[#9E9791] text-base max-w-md mx-auto leading-relaxed font-light">
           Two finishes. One standard of filtration. Find the Vesi showerhead that fits your space.
         </p>

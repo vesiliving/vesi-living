@@ -58,7 +58,7 @@ export default function Home() {
           Something Pure Is Coming
         </h1>
 
-        <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#B07D5A]" />
+        <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
 
         <p className="text-[#9E9791] text-base md:text-lg max-w-lg mx-auto leading-relaxed font-light">
           Be the first to experience Vesi Living — Nordic-designed filtration for your daily shower ritual. Join the waitlist for early access and an exclusive launch discount.
@@ -72,9 +72,9 @@ export default function Home() {
 
           {submitted ? (
             <div className="text-center py-8">
-              <div className="mx-auto mb-6 w-12 h-12 rounded-full border border-[#B07D5A] flex items-center justify-center">
+              <div className="mx-auto mb-6 w-12 h-12 rounded-full border border-[#C4885A] flex items-center justify-center">
                 <svg
-                  className="w-5 h-5 text-[#B07D5A]"
+                  className="w-5 h-5 text-[#C4885A]"
                   viewBox="0 0 20 20"
                   fill="none"
                   stroke="currentColor"
@@ -115,7 +115,7 @@ export default function Home() {
                     required
                     value={form.name}
                     onChange={handleChange}
-                    className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#B07D5A] placeholder:text-[#9E9791]/40"
+                    className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#C4885A] placeholder:text-[#9E9791]/40"
                     placeholder="Jane"
                   />
                 </div>
@@ -130,7 +130,7 @@ export default function Home() {
                     required
                     value={form.email}
                     onChange={handleChange}
-                    className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#B07D5A] placeholder:text-[#9E9791]/40"
+                    className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#C4885A] placeholder:text-[#9E9791]/40"
                     placeholder="jane@example.com"
                   />
                 </div>
@@ -142,7 +142,7 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="mt-4 w-full bg-[#0D0D0D] text-[#F5F3EF] py-4 text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 hover:bg-[#B07D5A] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="mt-4 w-full bg-[#0D0D0D] text-[#F5F3EF] py-4 text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 hover:bg-[#C4885A] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {loading ? 'Sending...' : 'Join the Waitlist'}
                 </button>

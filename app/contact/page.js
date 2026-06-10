@@ -21,7 +21,7 @@ export default function Contact() {
         >
           Get In Touch
         </h1>
-        <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#B07D5A]" />
+        <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
         <p className="text-[#9E9791] text-base max-w-md mx-auto leading-relaxed font-light">
           We&apos;d love to hear from you — whether you have a question about your Vesi product, a wholesale enquiry, or just want to say hello.
         </p>
@@ -38,7 +38,7 @@ export default function Contact() {
                 type="text"
                 name="name"
                 required
-                className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#B07D5A] placeholder:text-[#9E9791]/40"
+                className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#C4885A] placeholder:text-[#9E9791]/40"
                 placeholder="Jane Smith"
               />
             </div>
@@ -49,7 +49,7 @@ export default function Contact() {
                 type="email"
                 name="email"
                 required
-                className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#B07D5A] placeholder:text-[#9E9791]/40"
+                className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#C4885A] placeholder:text-[#9E9791]/40"
                 placeholder="jane@example.com"
               />
             </div>
@@ -60,14 +60,14 @@ export default function Contact() {
                 name="message"
                 required
                 rows={5}
-                className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#B07D5A] placeholder:text-[#9E9791]/40 resize-none"
+                className="bg-transparent border-b border-[#9E9791]/40 py-2.5 text-[#0D0D0D] text-sm outline-none transition-colors duration-200 focus:border-[#C4885A] placeholder:text-[#9E9791]/40 resize-none"
                 placeholder="Your message..."
               />
             </div>
 
             <button
               type="submit"
-              className="mt-4 w-full bg-[#0D0D0D] text-[#F5F3EF] py-4 text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 hover:bg-[#B07D5A] cursor-pointer"
+              className="mt-4 w-full bg-[#0D0D0D] text-[#F5F3EF] py-4 text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 hover:bg-[#C4885A] cursor-pointer"
             >
               Send Message
             </button>
@@ -78,7 +78,7 @@ export default function Contact() {
             <p className="text-xs tracking-widest uppercase text-[#9E9791] font-light mb-2">Email us directly</p>
             <a
               href="mailto:hello@vesiliving.com"
-              className="text-[#B07D5A] text-sm font-light hover:text-[#0D0D0D] transition-colors duration-200"
+              className="text-[#C4885A] text-sm font-light hover:text-[#0D0D0D] transition-colors duration-200"
             >
               hello@vesiliving.com
             </a>
