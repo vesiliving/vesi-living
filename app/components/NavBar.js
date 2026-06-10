@@ -18,7 +18,7 @@ export default function NavBar() {
 
   return (
     <nav className="bg-[#0D0D0D] relative z-50">
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-12">
+      <div className="px-6 flex items-center justify-center h-12">
 
         {/* Desktop links */}
         <ul className="hidden md:flex gap-10 list-none m-0 p-0">
