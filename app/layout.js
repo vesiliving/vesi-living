@@ -23,7 +23,7 @@ export const metadata = {
     siteName: 'Vesi Living',
     images: [
       {
-        url: 'https://www.vesiliving.com/logo.png',
+        url: 'https://www.vesiliving.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Vesi Living',
