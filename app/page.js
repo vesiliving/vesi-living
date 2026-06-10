@@ -45,7 +45,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
 
       {/* Header */}
-      <header className="bg-[#0D0D0D] py-10 flex justify-center items-center">
+      <header className="bg-[#0D0D0D] pt-10 pb-4 flex justify-center items-center">
         <Image
           src="/logo.png"
           alt="Vesi Living"
@@ -58,7 +58,7 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="bg-[#0D0D0D] px-6 pt-16 pb-20 text-center">
+      <section className="bg-[#0D0D0D] px-6 pt-4 pb-20 text-center">
         <h1
           className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-2xl mx-auto"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
