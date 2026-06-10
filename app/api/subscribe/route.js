@@ -17,7 +17,7 @@ export async function POST(request) {
   else if (listType === 'contact') tag = 'CONTACT';
   else tag = 'WAITLIST';
 
-  const listIds = listType === 'waitlist' ? [3] : [4];
+  const listIds = listType === 'waitlist' ? [3] : listType === 'contact' ? [5] : [4];
 
   const attributes = { FIRSTNAME: name };
   if (orderNumber) attributes.ORDER_NUMBER = orderNumber;
