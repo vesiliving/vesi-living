@@ -4,12 +4,19 @@ export const metadata = {
   title: 'Products — Vesi Living',
 };
 
-function ProductCard({ name, finish, description, amazonUrl, comingSoon }) {
+function ProductCard({ name, finish, description, amazonUrl, comingSoon, imageSrc }) {
   return (
     <div className="bg-white flex flex-col">
       {/* Image area */}
-      <div className="bg-[#F0EEE9] flex items-center justify-center aspect-square">
-        <p className="text-[#9E9791]/40 text-xs tracking-widest uppercase">Product Image</p>
+      <div className="bg-[#F0EEE9] flex items-center justify-center py-6" style={{ minHeight: '300px' }}>
+        <Image
+          src={imageSrc}
+          alt={`${name} — ${finish}`}
+          width={260}
+          height={300}
+          className="object-contain"
+          unoptimized
+        />
       </div>
       {/* Details */}
       <div className="p-8 flex flex-col flex-1">
@@ -79,18 +86,21 @@ export default function Products() {
             finish="Black / Copper"
             description="Our signature finish — a matte black body with copper-toned filter housing. KDF-55 and activated carbon dual filtration. Removes chlorine, heavy metals, and impurities for visibly healthier skin and hair. Fits all standard shower arms."
             amazonUrl="#"
+            imageSrc="/product-black-copper.png"
           />
           <ProductCard
             name="Vesi Filtered Shower Head"
             finish="White / Chrome"
             description="A clean, minimal profile in bright white with a polished chrome filter housing. Identical filtration performance to the Black/Copper, designed for lighter bathrooms and modern Scandinavian interiors. Universal shower arm fitting."
             amazonUrl="#"
+            imageSrc="/product-white-chrome.png"
           />
           <ProductCard
             name="Vesi Filtered Shower Head"
             finish="White / Copper"
             description="The same dual-stage KDF-55 and activated carbon filtration in a clean white finish with warm copper housing. A softer take on the signature Vesi design — made for bright, minimal bathrooms."
             comingSoon
+            imageSrc="/product-white-copper.png"
           />
         </div>
 
