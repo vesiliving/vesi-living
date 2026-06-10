@@ -61,7 +61,7 @@ export default function Home() {
         <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
 
         <p className="text-[#9E9791] text-base md:text-lg max-w-lg mx-auto leading-relaxed font-light">
-          Be the first to experience Vesi Living<br />Nordic-designed filtration for your daily shower ritual.<br />Join the waitlist for early access and an<br />exclusive launch discount.
+          Be the first to experience Vesi Living.<br />Nordic-designed filtration for your daily shower ritual.<br />Join the waitlist for early access and an exclusive<br />launch discount.
         </p>
 
       </section>
