@@ -12,6 +12,25 @@ const cormorant = Cormorant_Garamond({
 export const metadata = {
   title: "Vesi Living — Nordic Filtration Showerheads",
   description: "Nordic-designed filtration for your daily shower ritual.",
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
+  openGraph: {
+    title: 'Vesi Living — Nordic Filtered Shower Head',
+    description: 'Nordic-designed filtration for your daily shower ritual. Removes chlorine, heavy metals and impurities for visibly healthier skin and hair.',
+    url: 'https://www.vesiliving.com',
+    siteName: 'Vesi Living',
+    images: [
+      {
+        url: 'https://www.vesiliving.com/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Vesi Living',
+      },
+    ],
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {
