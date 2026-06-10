@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Register() {
   const [submitted, setSubmitted] = useState(false);
@@ -44,22 +45,12 @@ export default function Register() {
     <div className="flex flex-col min-h-screen">
 
       {/* Header */}
-      <header className="bg-[#0D0D0D] pt-6 pb-3 flex justify-center items-center">
-        <div className="text-center select-none">
-          <p
-            className="text-[88px] leading-none font-light tracking-widest text-[#F5F3EF]"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
-          >
-            vesi
-          </p>
-          <p className="text-[11px] tracking-[0.55em] font-light text-[#B07D5A] uppercase mt-1">
-            Living
-          </p>
-        </div>
+      <header className="bg-[#0D0D0D] pt-2 pb-0 flex justify-center items-center">
+        <Image src="/logo.png" alt="Vesi Living" width={398} height={256} className="object-contain" unoptimized priority />
       </header>
 
       {/* Hero */}
-      <section className="bg-[#0D0D0D] px-6 pt-3 pb-10 text-center">
+      <section className="bg-[#0D0D0D] px-6 pt-0 pb-10 text-center">
         <h1
           className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-2xl mx-auto"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
