@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Products — Vesi Living',
 };
 
-function ProductCard({ name, finish, description, amazonUrl }) {
+function ProductCard({ name, finish, description, amazonUrl, comingSoon }) {
   return (
     <div className="bg-white flex flex-col">
       {/* Image area */}
@@ -28,14 +28,20 @@ function ProductCard({ name, finish, description, amazonUrl }) {
           >
             $79.99
           </span>
-          <a
-            href={amazonUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#C4885A] text-[#F5F3EF] text-xs tracking-[0.2em] uppercase font-light px-6 py-3 transition-colors duration-300 hover:bg-[#0D0D0D]"
-          >
-            View on Amazon
-          </a>
+          {comingSoon ? (
+            <span className="border border-[#C4885A] text-[#C4885A] text-xs tracking-[0.2em] uppercase font-light px-6 py-3">
+              Coming Soon
+            </span>
+          ) : (
+            <a
+              href={amazonUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#C4885A] text-[#F5F3EF] text-xs tracking-[0.2em] uppercase font-light px-6 py-3 transition-colors duration-300 hover:bg-[#0D0D0D]"
+            >
+              View on Amazon
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -67,7 +73,7 @@ export default function Products() {
 
       {/* Product cards */}
       <section className="bg-[#F5F3EF] px-6 py-16 flex-1">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <ProductCard
             name="Vesi Filtered Shower Head"
             finish="Black / Copper"
@@ -80,10 +86,16 @@ export default function Products() {
             description="A clean, minimal profile in bright white with a polished chrome filter housing. Identical filtration performance to the Black/Copper, designed for lighter bathrooms and modern Scandinavian interiors. Universal shower arm fitting."
             amazonUrl="#"
           />
+          <ProductCard
+            name="Vesi Filtered Shower Head"
+            finish="White / Copper"
+            description="The same dual-stage KDF-55 and activated carbon filtration in a clean white finish with warm copper housing. A softer take on the signature Vesi design — made for bright, minimal bathrooms."
+            comingSoon
+          />
         </div>
 
         {/* Filter note */}
-        <div className="max-w-4xl mx-auto mt-12 pt-10 border-t border-[#9E9791]/20">
+        <div className="max-w-6xl mx-auto mt-12 pt-10 border-t border-[#9E9791]/20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
               { stat: '10,000L', label: 'Filter capacity per cartridge' },
