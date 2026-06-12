@@ -81,13 +81,13 @@ export default function Home() {
             className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-2xl mx-auto"
             style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
           >
-            Something Pure Is Coming
+            The Vesi Filtered Showerhead. Launching Soon.
           </h1>
 
           <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
 
           <p className="text-[#9E9791] text-base md:text-lg max-w-lg mx-auto leading-relaxed font-light">
-            Be the first to experience Vesi Living.<br />Nordic-designed filtration for your daily shower ritual.<br />Join the waitlist for early access and an exclusive<br />launch discount.
+            Hard water is damaging your skin and hair every time you shower.<br />Vesi&apos;s multi-stage filtration removes chlorine, heavy metals and impurities —<br />so your water works with you, not against you.<br /><br />Join the waitlist for early access and an exclusive discount when we launch.
           </p>
         </div>
 
