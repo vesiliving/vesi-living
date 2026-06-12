@@ -1,7 +1,91 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+
+const PRODUCTS = [
+  { src: '/product-black-copper.png', label: 'Black / Copper' },
+  { src: '/product-white-chrome.png', label: 'White / Chrome' },
+  { src: '/product-white-copper.png', label: 'White / Copper' },
+];
+
+function ProductCarousel() {
+  const [active, setActive] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTransitioning(true);
+      setTimeout(() => {
+        setActive(i => (i + 1) % PRODUCTS.length);
+        setTransitioning(false);
+      }, 750); // halfway through transition
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // pos: 0 = centre, 1 = right, 2 = left
+  const getPos = (index) => (index - active + PRODUCTS.length) % PRODUCTS.length;
+
+  const getStyle = (pos) => {
+    const base = {
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      width: '340px',
+      height: '520px',
+      transition: 'transform 1.5s cubic-bezier(0.4,0,0.2,1), opacity 1.5s ease',
+    };
+    if (pos === 0) return { ...base, transform: 'translate(-50%, -50%) translateX(0px) scale(1)', zIndex: 2, opacity: 1 };
+    if (pos === 1) return { ...base, transform: 'translate(-50%, -50%) translateX(260px) scale(0.65)', zIndex: 1, opacity: 1 };
+    return          { ...base, transform: 'translate(-50%, -50%) translateX(-260px) scale(0.65)', zIndex: 1, opacity: 1 };
+  };
+
+  return (
+    <div style={{ backgroundColor: '#0D0D0D', paddingBottom: '2.5rem' }}>
+      {/* Stage */}
+      <div className="relative overflow-hidden mx-auto" style={{ height: '560px', maxWidth: '900px' }}>
+        {PRODUCTS.map((product, index) => {
+          const pos = getPos(index);
+          const isSide = pos !== 0;
+          return (
+            <div key={product.src} style={getStyle(pos)}>
+              {/* Product image */}
+              <Image
+                src={product.src}
+                alt={product.label}
+                fill
+                className="object-contain"
+                unoptimized
+              />
+              {/* Side overlay */}
+              {isSide && (
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ backgroundColor: 'rgba(13,13,13,0.6)', zIndex: 1 }}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {/* Caption */}
+      <div className="text-center" style={{ marginTop: '1rem' }}>
+        <span
+          className="text-[11px] tracking-[0.3em] uppercase font-light"
+          style={{
+            color: '#C4885A',
+            display: 'inline-block',
+            opacity: transitioning ? 0 : 1,
+            transition: 'opacity 0.75s ease',
+          }}
+        >
+          {PRODUCTS[active].label}
+        </span>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const [submitted, setSubmitted] = useState(false);
@@ -180,39 +264,7 @@ export default function Home() {
       </section>
 
       {/* Product carousel */}
-      <div className="relative overflow-hidden" style={{ height: '600px', backgroundColor: '#0D0D0D' }}>
-
-        {/* Product image layers */}
-        {[
-          { src: '/product-black-copper.png', label: 'Black / Copper', delay: '0s' },
-          { src: '/product-white-chrome.png', label: 'White / Chrome', delay: '6s' },
-          { src: '/product-white-copper.png', label: 'White / Copper', delay: '12s' },
-        ].map(({ src, label, delay }) => (
-          <div key={src}>
-            {/* Image layer */}
-            <div
-              className="product-bg-image"
-              style={{ backgroundImage: `url(${src})`, animationDelay: delay }}
-            />
-            {/* Caption layer */}
-            <div
-              className="product-caption"
-              style={{ animationDelay: delay, paddingBottom: '2rem', zIndex: 3 }}
-            >
-              <span className="text-[11px] tracking-[0.3em] uppercase font-light" style={{ color: '#C4885A' }}>
-                {label}
-              </span>
-            </div>
-          </div>
-        ))}
-
-        {/* Dark overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ backgroundColor: 'rgba(13,13,13,0.5)', zIndex: 2 }}
-        />
-
-      </div>
+      <ProductCarousel />
 
       {/* Footer */}
       <footer className="bg-[#0D0D0D] py-8 text-center">
