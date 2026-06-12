@@ -61,7 +61,7 @@ export default function Products() {
 
       {/* Header */}
       <header className="bg-[#0D0D0D] pt-0 pb-0 flex justify-center items-center">
-        <Image src="/logo.png" alt="Vesi Living" width={398} height={256} className="object-contain" unoptimized priority />
+        <Image src="/logo.png" alt="Vesi Living" width={279} height={179} className="object-contain" style={{ marginTop: "-16px" }} unoptimized priority />
       </header>
 
       {/* Hero */}
