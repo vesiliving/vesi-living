@@ -64,7 +64,7 @@ export default function Contact() {
         </h1>
         <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
         <p className="text-[#9E9791] text-base max-w-md mx-auto leading-relaxed font-light">
-          We&apos;d love to hear from you — whether you have a question about your Vesi product, a wholesale enquiry, or just want to say hello.
+          We&apos;d love to hear from you. Whether you have a question about the Vesi product range, or just want to say hello.
         </p>
       </section>
 
