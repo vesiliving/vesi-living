@@ -87,7 +87,7 @@ export default function Home() {
           <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
 
           <p className="text-[#9E9791] text-base md:text-lg max-w-lg mx-auto leading-relaxed font-light">
-            Hard water is damaging your skin and hair every time you shower.<br />Vesi&apos;s multi-stage filtration removes chlorine, heavy metals and impurities —<br />so your water works with you, not against you.<br /><br />Join the waitlist for early access and an exclusive discount when we launch.
+            Hard water is damaging your skin and hair every time you shower.<br /><br />Vesi&apos;s multi-stage filtration removes chlorine, heavy metals and impurities, so your water works with you, not against you.<br /><br />Join the waitlist for an exclusive discount when we launch.
           </p>
         </div>
 
