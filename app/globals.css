@@ -33,6 +33,35 @@ body::before {
   animation: copperPulse 3.5s ease-in-out infinite;
 }
 
+/* Product carousel crossfade (3 images, 18s cycle) */
+@keyframes fadeProduct {
+  0%     { opacity: 0; }
+  11.11% { opacity: 1; }
+  33.33% { opacity: 1; }
+  44.44% { opacity: 0; }
+  100%   { opacity: 0; }
+}
+
+.product-bg-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: fadeProduct 18s linear infinite;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.product-caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeProduct 18s linear infinite;
+}
+
 /* Hero crossfade */
 @keyframes fadeImage {
   0%     { opacity: 0; }

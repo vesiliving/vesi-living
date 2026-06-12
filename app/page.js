@@ -179,6 +179,41 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Product carousel */}
+      <div className="relative overflow-hidden" style={{ height: '600px', backgroundColor: '#0D0D0D' }}>
+
+        {/* Product image layers */}
+        {[
+          { src: '/product-black-copper.png', label: 'Black / Copper', delay: '0s' },
+          { src: '/product-white-chrome.png', label: 'White / Chrome', delay: '6s' },
+          { src: '/product-white-copper.png', label: 'White / Copper', delay: '12s' },
+        ].map(({ src, label, delay }) => (
+          <div key={src}>
+            {/* Image layer */}
+            <div
+              className="product-bg-image"
+              style={{ backgroundImage: `url(${src})`, animationDelay: delay }}
+            />
+            {/* Caption layer */}
+            <div
+              className="product-caption"
+              style={{ animationDelay: delay, paddingBottom: '2rem', zIndex: 3 }}
+            >
+              <span className="text-[11px] tracking-[0.3em] uppercase font-light" style={{ color: '#C4885A' }}>
+                {label}
+              </span>
+            </div>
+          </div>
+        ))}
+
+        {/* Dark overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ backgroundColor: 'rgba(13,13,13,0.5)', zIndex: 2 }}
+        />
+
+      </div>
+
       {/* Footer */}
       <footer className="bg-[#0D0D0D] py-8 text-center">
         <p className="text-[#9E9791] text-xs tracking-widest">
