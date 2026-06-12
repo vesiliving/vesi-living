@@ -75,8 +75,8 @@ export default function Home() {
           style={{ background: 'linear-gradient(to left, #0D0D0D, transparent)' }} />
         {/* Scrolling track — images duplicated for seamless loop */}
         <div className="lifestyle-strip h-full">
-          {['/lifestyle-1.jpg', '/lifestyle-2.jpg', '/lifestyle-3.jpg', '/lifestyle-4.jpg',
-            '/lifestyle-1.jpg', '/lifestyle-2.jpg', '/lifestyle-3.jpg', '/lifestyle-4.jpg'].map((src, i) => (
+          {['/lifestyle-1.png', '/lifestyle-2.png', '/lifestyle-3.png', '/lifestyle-4.png',
+            '/lifestyle-1.png', '/lifestyle-2.png', '/lifestyle-3.png', '/lifestyle-4.png'].map((src, i) => (
             <div key={i} className="relative flex-shrink-0" style={{ width: '400px', height: '500px' }}>
               <Image src={src} alt="" fill className="object-cover" unoptimized />
             </div>
