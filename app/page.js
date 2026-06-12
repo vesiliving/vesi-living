@@ -165,7 +165,7 @@ export default function Home() {
             className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-2xl mx-auto"
             style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
           >
-            The Vesi Filtered Showerhead. Launching Soon.
+            The Vesi Filtered Showerhead.<br className="block md:hidden" /> Launching Soon.
           </h1>
 
           <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
