@@ -9,7 +9,7 @@ export default function OurStory() {
     <div className="flex flex-col min-h-screen">
 
       {/* Header */}
-      <header className="bg-[#0D0D0D] pt-1 pb-0 flex justify-center items-center">
+      <header className="bg-[#0D0D0D] pt-0 pb-0 flex justify-center items-center">
         <Image src="/logo.png" alt="Vesi Living" width={398} height={256} className="object-contain" unoptimized priority />
       </header>
 
