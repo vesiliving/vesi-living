@@ -32,3 +32,15 @@ body::before {
   z-index: 9999;
   animation: copperPulse 3.5s ease-in-out infinite;
 }
+
+/* Lifestyle strip scroll */
+@keyframes scrollStrip {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.lifestyle-strip {
+  display: flex;
+  width: max-content;
+  animation: scrollStrip 30s linear infinite;
+}

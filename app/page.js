@@ -66,6 +66,24 @@ export default function Home() {
 
       </section>
 
+      {/* Lifestyle image strip */}
+      <div className="bg-[#0D0D0D] relative overflow-hidden" style={{ height: '500px' }}>
+        {/* Edge fades */}
+        <div className="absolute inset-y-0 left-0 w-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to right, #0D0D0D, transparent)' }} />
+        <div className="absolute inset-y-0 right-0 w-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to left, #0D0D0D, transparent)' }} />
+        {/* Scrolling track — images duplicated for seamless loop */}
+        <div className="lifestyle-strip h-full">
+          {['/lifestyle-1.jpg', '/lifestyle-2.jpg', '/lifestyle-3.jpg', '/lifestyle-4.jpg',
+            '/lifestyle-1.jpg', '/lifestyle-2.jpg', '/lifestyle-3.jpg', '/lifestyle-4.jpg'].map((src, i) => (
+            <div key={i} className="relative flex-shrink-0" style={{ width: '400px', height: '500px' }}>
+              <Image src={src} alt="" fill className="object-cover" unoptimized />
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Form / Success */}
       <section className="bg-[#F5F3EF] px-6 py-16 flex-1">
         <div className="max-w-md mx-auto">
