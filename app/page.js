@@ -49,40 +49,49 @@ export default function Home() {
         <Image src="/logo.png" alt="Vesi Living" width={398} height={256} className="object-contain" unoptimized priority />
       </header>
 
-      {/* Hero */}
-      <section className="bg-[#0D0D0D] px-6 pt-0 pb-10 text-center">
-        <h1
-          className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-2xl mx-auto"
-          style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
-        >
-          Something Pure Is Coming
-        </h1>
+      {/* Hero with crossfading background images */}
+      <section className="relative overflow-hidden px-6 pt-0 pb-16 text-center flex flex-col justify-center" style={{ backgroundColor: '#0D0D0D', minHeight: '100vh' }}>
 
-        <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
+        {/* Background image layers — each fades in and out in sequence */}
+        {[
+          { src: '/lifestyle-1.png', delay: '0s' },
+          { src: '/lifestyle-2.png', delay: '6s' },
+          { src: '/lifestyle-3.png', delay: '12s' },
+          { src: '/lifestyle-4.png', delay: '18s' },
+        ].map(({ src, delay }) => (
+          <div
+            key={src}
+            className="hero-bg-image"
+            style={{
+              backgroundImage: `url(${src})`,
+              animationDelay: delay,
+            }}
+          />
+        ))}
 
-        <p className="text-[#9E9791] text-base md:text-lg max-w-lg mx-auto leading-relaxed font-light">
-          Be the first to experience Vesi Living.<br />Nordic-designed filtration for your daily shower ritual.<br />Join the waitlist for early access and an exclusive<br />launch discount.
-        </p>
+        {/* Dark overlay so images stay atmospheric, not dominant */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ backgroundColor: 'rgba(13,13,13,0.75)', zIndex: 1 }}
+        />
+
+        {/* Content sits above backgrounds */}
+        <div className="relative" style={{ zIndex: 2 }}>
+          <h1
+            className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-2xl mx-auto"
+            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
+          >
+            Something Pure Is Coming
+          </h1>
+
+          <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
+
+          <p className="text-[#9E9791] text-base md:text-lg max-w-lg mx-auto leading-relaxed font-light">
+            Be the first to experience Vesi Living.<br />Nordic-designed filtration for your daily shower ritual.<br />Join the waitlist for early access and an exclusive<br />launch discount.
+          </p>
+        </div>
 
       </section>
-
-      {/* Lifestyle image strip */}
-      <div className="bg-[#0D0D0D] relative overflow-hidden" style={{ height: '500px' }}>
-        {/* Edge fades */}
-        <div className="absolute inset-y-0 left-0 w-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, #0D0D0D, transparent)' }} />
-        <div className="absolute inset-y-0 right-0 w-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, #0D0D0D, transparent)' }} />
-        {/* Scrolling track — images duplicated for seamless loop */}
-        <div className="lifestyle-strip h-full">
-          {['/lifestyle-1.png', '/lifestyle-2.png', '/lifestyle-3.png', '/lifestyle-4.png',
-            '/lifestyle-1.png', '/lifestyle-2.png', '/lifestyle-3.png', '/lifestyle-4.png'].map((src, i) => (
-            <div key={i} className="relative flex-shrink-0" style={{ width: '400px', height: '500px' }}>
-              <Image src={src} alt="" fill className="object-cover" unoptimized />
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Form / Success */}
       <section className="bg-[#F5F3EF] px-6 py-16 flex-1">

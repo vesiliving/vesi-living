@@ -33,14 +33,20 @@ body::before {
   animation: copperPulse 3.5s ease-in-out infinite;
 }
 
-/* Lifestyle strip scroll */
-@keyframes scrollStrip {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* Hero crossfade */
+@keyframes fadeImage {
+  0%     { opacity: 0; }
+  8.33%  { opacity: 1; }
+  25%    { opacity: 1; }
+  33.33% { opacity: 0; }
+  100%   { opacity: 0; }
 }
 
-.lifestyle-strip {
-  display: flex;
-  width: max-content;
-  animation: scrollStrip 30s linear infinite;
+.hero-bg-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: fadeImage 24s linear infinite;
+  background-size: cover;
+  background-position: center;
 }
