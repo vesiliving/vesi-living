@@ -62,6 +62,12 @@ body::before {
   animation: fadeProduct 18s linear infinite;
 }
 
+/* Scroll chevron bounce */
+@keyframes chevronBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50%       { transform: translateY(6px); opacity: 1; }
+}
+
 /* Hero crossfade */
 @keyframes fadeImage {
   0%     { opacity: 0; }

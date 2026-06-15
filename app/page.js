@@ -1,12 +1,31 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
+function useReveal(threshold = 0.15) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, visible];
+}
+
+const HEADLINE_1 = ['Filter', 'your', 'water', 'at', 'the', 'source.'];
+const HEADLINE_2 = ['Protect', 'your', 'skin', '&', 'hair.'];
+
 const PRODUCTS = [
-  { src: '/product-black-copper.png', label: 'Black / Copper' },
-  { src: '/product-white-chrome.png', label: 'White / Chrome' },
-  { src: '/product-white-copper.png', label: 'White / Copper' },
+  { src: '/product-black-copper.png', label: 'Black / Copper', available: true },
+  { src: '/product-white-chrome.png', label: 'White / Chrome', available: true },
+  { src: '/product-white-copper.png', label: 'White / Copper', available: false },
 ];
 
 function ProductCarousel() {
@@ -19,12 +38,11 @@ function ProductCarousel() {
       setTimeout(() => {
         setActive(i => (i + 1) % PRODUCTS.length);
         setTransitioning(false);
-      }, 750); // halfway through transition
+      }, 750);
     }, 4000);
     return () => clearInterval(timer);
   }, []);
 
-  // pos: 0 = centre, 1 = right, 2 = left
   const getPos = (index) => (index - active + PRODUCTS.length) % PRODUCTS.length;
 
   const getStyle = (pos) => {
@@ -32,66 +50,83 @@ function ProductCarousel() {
       position: 'absolute',
       left: '50%',
       top: '50%',
-      width: '340px',
-      height: '520px',
+      width: '320px',
+      height: '480px',
       transition: 'transform 1.5s cubic-bezier(0.4,0,0.2,1), opacity 1.5s ease',
     };
     if (pos === 0) return { ...base, transform: 'translate(-50%, -50%) translateX(0px) scale(1)', zIndex: 2, opacity: 1 };
-    if (pos === 1) return { ...base, transform: 'translate(-50%, -50%) translateX(260px) scale(0.65)', zIndex: 1, opacity: 1 };
-    return          { ...base, transform: 'translate(-50%, -50%) translateX(-260px) scale(0.65)', zIndex: 1, opacity: 1 };
+    if (pos === 1) return { ...base, transform: 'translate(-50%, -50%) translateX(240px) scale(0.65)', zIndex: 1, opacity: 1 };
+    return          { ...base, transform: 'translate(-50%, -50%) translateX(-240px) scale(0.65)', zIndex: 1, opacity: 1 };
   };
 
+  const activeProduct = PRODUCTS[active];
+
   return (
-    <div style={{ backgroundColor: '#0D0D0D', paddingBottom: '2.5rem' }}>
+    <div className="bg-[#0D0D0D]" style={{ paddingBottom: '2rem' }}>
       {/* Stage */}
-      <div className="relative overflow-hidden mx-auto" style={{ height: '560px', maxWidth: '900px' }}>
+      <div className="relative overflow-hidden mx-auto" style={{ height: '520px', maxWidth: '860px' }}>
         {PRODUCTS.map((product, index) => {
           const pos = getPos(index);
           const isSide = pos !== 0;
           return (
             <div key={product.src} style={getStyle(pos)}>
-              {/* Product image */}
-              <Image
-                src={product.src}
-                alt={product.label}
-                fill
-                className="object-contain"
-                unoptimized
-              />
-              {/* Side overlay */}
+              <Image src={product.src} alt={product.label} fill className="object-contain" unoptimized />
               {isSide && (
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ backgroundColor: 'rgba(13,13,13,0.6)', zIndex: 1 }}
-                />
+                <div className="absolute inset-0 pointer-events-none" style={{ backgroundColor: 'rgba(13,13,13,0.65)', zIndex: 1 }} />
               )}
             </div>
           );
         })}
       </div>
       {/* Caption */}
-      <div className="text-center" style={{ marginTop: '1rem' }}>
-        <span
-          className="text-[11px] tracking-[0.3em] uppercase font-light"
-          style={{
-            color: '#C4885A',
-            display: 'inline-block',
-            opacity: transitioning ? 0 : 1,
-            transition: 'opacity 0.75s ease',
-          }}
+      <div className="text-center" style={{ marginTop: '0.5rem' }}>
+        <p
+          className="text-[10px] tracking-[0.4em] uppercase font-light"
+          style={{ color: '#C4885A', opacity: transitioning ? 0 : 1, transition: 'opacity 0.75s ease' }}
         >
-          {PRODUCTS[active].label}
-        </span>
+          {activeProduct.label}
+        </p>
+        <p
+          className="text-[10px] tracking-[0.25em] uppercase font-light mt-1"
+          style={{ color: activeProduct.available ? '#C4885A' : '#9E9791', opacity: transitioning ? 0 : 1, transition: 'opacity 0.75s ease' }}
+        >
+          {activeProduct.available ? 'Available Now' : 'Coming Soon'}
+        </p>
       </div>
     </div>
   );
 }
+
+const BENEFITS = [
+  {
+    heading: 'Removes Chlorine & Heavy Metals',
+    body: 'KDF-55 filtration neutralises contaminants before they reach your skin.',
+  },
+  {
+    heading: 'Softer Skin & Healthier Hair',
+    body: 'Filtered water reduces dryness, irritation, and colour fade over time.',
+  },
+  {
+    heading: 'Easy Filter Replacement',
+    body: 'Swap your filter in under 30 seconds. No tools, no plumber required.',
+  },
+];
 
 export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [form, setForm] = useState({ name: '', email: '' });
+  const [heroVisible, setHeroVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroVisible(true), 120);
+    return () => clearTimeout(t);
+  }, []);
+
+  const [productsRef, productsVisible] = useReveal();
+  const [benefitsRef, benefitsVisible] = useReveal();
+  const [formRef, formVisible] = useReveal();
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -102,21 +137,17 @@ export default function Home() {
     e.preventDefault();
     setLoading(true);
     setError('');
-
     try {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, listType: 'waitlist' }),
       });
-
       const data = await res.json();
-
       if (!res.ok) {
         setError(data.error || 'Something went wrong. Please try again.');
         return;
       }
-
       setSubmitted(true);
     } catch {
       setError('Something went wrong. Please try again.');
@@ -125,74 +156,155 @@ export default function Home() {
     }
   }
 
+  const wordCount = HEADLINE_1.length + HEADLINE_2.length;
+
   return (
     <div className="flex flex-col min-h-screen">
 
-      {/* Header */}
+      {/* Logo */}
       <header className="bg-[#0D0D0D] pt-8 pb-4 md:pt-4 md:pb-0 flex justify-center items-center">
-        <Image src="/logo.png" alt="Vesi Living" width={279} height={179} className="object-contain" style={{ marginTop: "-16px" }} unoptimized priority />
+        <Image
+          src="/logo.png"
+          alt="Vesi Living"
+          width={279}
+          height={179}
+          className="object-contain"
+          style={{ marginTop: '-16px' }}
+          unoptimized
+          priority
+        />
       </header>
 
-      {/* Hero with crossfading background images */}
-      <section className="relative overflow-hidden px-6 pt-0 pb-16 text-center flex flex-col justify-center" style={{ backgroundColor: '#0D0D0D', minHeight: '100vh' }}>
-
-        {/* Background image layers — each fades in and out in sequence */}
-        {[
-          { src: '/lifestyle-1.png', delay: '0s' },
-          { src: '/lifestyle-2.png', delay: '6s' },
-          { src: '/lifestyle-3.png', delay: '12s' },
-          { src: '/lifestyle-4.png', delay: '18s' },
-        ].map(({ src, delay }) => (
-          <div
-            key={src}
-            className="hero-bg-image"
-            style={{
-              backgroundImage: `url(${src})`,
-              animationDelay: delay,
-            }}
-          />
-        ))}
-
-        {/* Dark overlay so images stay atmospheric, not dominant */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ backgroundColor: 'rgba(13,13,13,0.75)', zIndex: 1 }}
-        />
-
-        {/* Content sits above backgrounds */}
-        <div className="relative" style={{ zIndex: 2 }}>
-          <h1
-            className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-2xl mx-auto"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
-          >
-            The Vesi Filtered Showerhead.<br className="block md:hidden" /> Launching Soon.
-          </h1>
-
-          <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
-
-          <p className="text-[#9E9791] text-base md:text-lg max-w-lg mx-auto leading-relaxed font-light">
-            Hard water is damaging your skin and hair every time you shower.<br /><br />Vesi&apos;s multi-stage filtration removes chlorine, heavy metals and impurities, so your water works with you, not against you.<br /><br />Join the waitlist for an exclusive discount when we launch.
-          </p>
-        </div>
-
+      {/* SECTION 1 — PRODUCT CAROUSEL */}
+      <section className="bg-[#0D0D0D] pt-6 pb-2">
+        <p className="text-center text-[10px] tracking-[0.45em] uppercase font-light mb-6" style={{ color: '#C4885A' }}>
+          The Collection
+        </p>
+        <ProductCarousel />
       </section>
 
-      {/* Form / Success */}
-      <section className="bg-[#F5F3EF] px-6 py-16 flex-1">
-        <div className="max-w-md mx-auto">
+      {/* SECTION 2 — MESSAGE */}
+      <section className="relative bg-[#0D0D0D] px-6 pt-16 pb-20 text-center overflow-hidden" style={{ borderTop: '1px solid rgba(245,243,239,0.07)' }}>
+        {/* Radial copper glow */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '700px', height: '400px',
+            background: 'radial-gradient(ellipse at center, rgba(196,136,90,0.09) 0%, transparent 68%)',
+          }}
+        />
+        <div className="relative">
+          <h1
+            className="text-5xl md:text-7xl font-light text-[#F5F3EF] leading-tight max-w-3xl mx-auto"
+            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
+          >
+            <span className="block">
+              {HEADLINE_1.map((word, i) => (
+                <span
+                  key={i}
+                  style={{
+                    display: 'inline-block',
+                    marginRight: i < HEADLINE_1.length - 1 ? '0.28em' : 0,
+                    opacity: heroVisible ? 1 : 0,
+                    transform: heroVisible ? 'translateY(0)' : 'translateY(14px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease',
+                    transitionDelay: `${i * 0.08}s`,
+                  }}
+                >
+                  {word}
+                </span>
+              ))}
+            </span>
+            <span className="block mt-1">
+              {HEADLINE_2.map((word, i) => (
+                <span
+                  key={i}
+                  style={{
+                    display: 'inline-block',
+                    marginRight: i < HEADLINE_2.length - 1 ? '0.28em' : 0,
+                    opacity: heroVisible ? 1 : 0,
+                    transform: heroVisible ? 'translateY(0)' : 'translateY(14px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease',
+                    transitionDelay: `${(HEADLINE_1.length + i) * 0.08}s`,
+                  }}
+                >
+                  {word}
+                </span>
+              ))}
+            </span>
+          </h1>
+          <div
+            className="mx-auto h-px bg-[#C4885A] mt-8"
+            style={{
+              width: heroVisible ? '3rem' : '0',
+              transition: 'width 0.9s ease',
+              transitionDelay: `${wordCount * 0.08 + 0.1}s`,
+            }}
+          />
+          <p
+            className="mt-6 text-[#9E9791] text-base md:text-lg font-light tracking-wide"
+            style={{
+              opacity: heroVisible ? 1 : 0,
+              transition: 'opacity 0.8s ease',
+              transitionDelay: `${wordCount * 0.08 + 0.35}s`,
+            }}
+          >
+            The Vesi Filtered Showerhead. Launching Soon.
+          </p>
+        </div>
+      </section>
 
+      {/* SECTION 3 — WHY VESI */}
+      <section
+        className="bg-[#0D0D0D] px-6 py-20"
+        style={{ borderTop: '1px solid rgba(245,243,239,0.07)' }}
+        ref={benefitsRef}
+      >
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-14 text-center">
+          {BENEFITS.map(({ heading, body }, i) => (
+            <div
+              key={heading}
+              style={{
+                opacity: benefitsVisible ? 1 : 0,
+                transform: benefitsVisible ? 'translateY(0)' : 'translateY(24px)',
+                transition: 'opacity 0.7s ease, transform 0.7s ease',
+                transitionDelay: benefitsVisible ? `${i * 0.18}s` : '0s',
+              }}
+            >
+              <div className="flex justify-center mb-5">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                  <circle cx="13" cy="13" r="9" stroke="#C4885A" strokeWidth="1.2" />
+                  <circle cx="13" cy="13" r="2" fill="#C4885A" />
+                </svg>
+              </div>
+              <h3
+                className="font-light text-[#F5F3EF] mb-3 leading-snug"
+                style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: '1.15rem' }}
+              >
+                {heading}
+              </h3>
+              <p className="text-xs leading-relaxed font-light" style={{ color: '#9E9791' }}>{body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 4 — WAITLIST */}
+      <section className="bg-[#F5F3EF] px-6 py-24" ref={formRef}>
+        <div
+          className="max-w-md mx-auto"
+          style={{
+            opacity: formVisible ? 1 : 0,
+            transform: formVisible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 0.8s ease, transform 0.8s ease',
+          }}
+        >
           {submitted ? (
             <div className="text-center py-8">
               <div className="mx-auto mb-6 w-12 h-12 rounded-full border border-[#C4885A] flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-[#C4885A]"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
+                <svg className="w-5 h-5 text-[#C4885A]" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="4 10 8 14 16 6" />
                 </svg>
               </div>
@@ -209,17 +321,17 @@ export default function Home() {
           ) : (
             <>
               <h2
-                className="text-2xl font-light text-[#0D0D0D] mb-8 text-center"
+                className="text-4xl md:text-5xl font-light text-[#0D0D0D] mb-4 text-center leading-tight"
                 style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
               >
-                Join the waitlist
+                Be among the first.
               </h2>
-
+              <p className="text-[#9E9791] text-sm md:text-base text-center mb-10 leading-relaxed font-light">
+                Join the waitlist for early access and an exclusive discount when we launch.
+              </p>
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs tracking-widest uppercase text-[#9E9791] font-light">
-                    First Name
-                  </label>
+                  <label className="text-xs tracking-widest uppercase text-[#9E9791] font-light">First Name</label>
                   <input
                     type="text"
                     name="name"
@@ -230,11 +342,8 @@ export default function Home() {
                     placeholder="Jane"
                   />
                 </div>
-
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs tracking-widest uppercase text-[#9E9791] font-light">
-                    Email Address
-                  </label>
+                  <label className="text-xs tracking-widest uppercase text-[#9E9791] font-light">Email Address</label>
                   <input
                     type="email"
                     name="email"
@@ -245,15 +354,11 @@ export default function Home() {
                     placeholder="jane@example.com"
                   />
                 </div>
-
-                {error && (
-                  <p className="text-red-500 text-xs mt-1">{error}</p>
-                )}
-
+                {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="mt-4 w-full bg-[#0D0D0D] text-[#F5F3EF] py-4 text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 hover:bg-[#C4885A] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="mt-4 w-full bg-[#C4885A] text-[#F5F3EF] py-4 text-xs tracking-[0.25em] uppercase font-light transition-colors duration-300 hover:bg-[#0D0D0D] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {loading ? 'Sending...' : 'Join the Waitlist'}
                 </button>
@@ -263,10 +368,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product carousel */}
-      <ProductCarousel />
-
-      {/* Footer */}
+      {/* FOOTER */}
       <footer className="bg-[#0D0D0D] py-8 text-center">
         <p className="text-[#9E9791] text-xs tracking-widest">
           © 2025 Vesi Living. All rights reserved.
