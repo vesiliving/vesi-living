@@ -19,9 +19,12 @@ export default function OurStory() {
           className="text-4xl md:text-5xl font-light text-[#F5F3EF] leading-tight max-w-3xl mx-auto"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
         >
-          Where Nordic Design Meets Water Science
+          Clean Water. Better Living.
         </h1>
-        <div className="mx-auto mt-6 w-12 h-px bg-[#C4885A]" />
+        <div className="mx-auto mt-6 mb-6 w-12 h-px bg-[#C4885A]" />
+        <p className="text-[#9E9791] text-base max-w-md mx-auto leading-relaxed font-light">
+          We believe what touches your body every day should be held to the highest standard.
+        </p>
       </section>
 
       {/* Editorial sections */}
