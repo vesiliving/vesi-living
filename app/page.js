@@ -62,9 +62,9 @@ function ProductCarousel() {
   const activeProduct = PRODUCTS[active];
 
   return (
-    <div className="bg-[#0D0D0D]" style={{ paddingBottom: '2rem' }}>
+    <div className="bg-[#0D0D0D]" style={{ paddingBottom: '0.75rem' }}>
       {/* Stage */}
-      <div className="relative overflow-hidden mx-auto" style={{ height: '520px', maxWidth: '860px' }}>
+      <div className="relative overflow-hidden mx-auto" style={{ height: '420px', maxWidth: '860px' }}>
         {PRODUCTS.map((product, index) => {
           const pos = getPos(index);
           const isSide = pos !== 0;
@@ -88,9 +88,9 @@ function ProductCarousel() {
         </p>
         <p
           className="text-[10px] tracking-[0.25em] uppercase font-light mt-1"
-          style={{ color: activeProduct.available ? '#C4885A' : '#9E9791', opacity: transitioning ? 0 : 1, transition: 'opacity 0.75s ease' }}
+          style={{ color: '#9E9791', opacity: transitioning ? 0 : 1, transition: 'opacity 0.75s ease' }}
         >
-          {activeProduct.available ? 'Available Now' : 'Coming Soon'}
+          Coming Soon
         </p>
       </div>
     </div>
@@ -162,7 +162,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
 
       {/* Logo */}
-      <header className="bg-[#0D0D0D] pt-8 pb-4 md:pt-4 md:pb-0 flex justify-center items-center">
+      <header className="bg-[#0D0D0D] pt-4 pb-0 md:pt-4 md:pb-0 flex justify-center items-center">
         <Image
           src="/logo.png"
           alt="Vesi Living"
@@ -176,15 +176,15 @@ export default function Home() {
       </header>
 
       {/* SECTION 1 — PRODUCT CAROUSEL */}
-      <section className="bg-[#0D0D0D] pt-6 pb-2">
-        <p className="text-center text-[10px] tracking-[0.45em] uppercase font-light mb-6" style={{ color: '#C4885A' }}>
+      <section className="bg-[#0D0D0D] pt-2 pb-0">
+        <p className="text-center text-[10px] tracking-[0.45em] uppercase font-light mb-3" style={{ color: '#C4885A' }}>
           The Collection
         </p>
         <ProductCarousel />
       </section>
 
       {/* SECTION 2 — MESSAGE */}
-      <section className="relative bg-[#0D0D0D] px-6 pt-16 pb-20 text-center overflow-hidden" style={{ borderTop: '1px solid rgba(245,243,239,0.07)' }}>
+      <section className="relative bg-[#0D0D0D] px-6 pt-8 pb-10 text-center overflow-hidden" style={{ borderTop: '1px solid rgba(245,243,239,0.07)' }}>
         {/* Radial copper glow */}
         <div
           className="absolute pointer-events-none"
@@ -197,7 +197,7 @@ export default function Home() {
         />
         <div className="relative">
           <h1
-            className="text-5xl md:text-7xl font-light text-[#F5F3EF] leading-tight max-w-3xl mx-auto"
+            className="text-3xl md:text-[2.6rem] font-light text-[#F5F3EF] leading-tight max-w-3xl mx-auto"
             style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
           >
             <span className="block">
@@ -236,7 +236,7 @@ export default function Home() {
             </span>
           </h1>
           <div
-            className="mx-auto h-px bg-[#C4885A] mt-8"
+            className="mx-auto h-px bg-[#C4885A] mt-5"
             style={{
               width: heroVisible ? '3rem' : '0',
               transition: 'width 0.9s ease',
@@ -244,25 +244,25 @@ export default function Home() {
             }}
           />
           <p
-            className="mt-6 text-[#9E9791] text-base md:text-lg font-light tracking-wide"
+            className="mt-4 text-[#9E9791] text-base md:text-lg font-light tracking-wide"
             style={{
               opacity: heroVisible ? 1 : 0,
               transition: 'opacity 0.8s ease',
               transitionDelay: `${wordCount * 0.08 + 0.35}s`,
             }}
           >
-            The Vesi Filtered Showerhead. Launching Soon.
+            The Vesi Filtered Showerhead.<br />Launching Soon.
           </p>
         </div>
       </section>
 
       {/* SECTION 3 — WHY VESI */}
       <section
-        className="bg-[#0D0D0D] px-6 py-20"
+        className="bg-[#0D0D0D] px-6 py-10"
         style={{ borderTop: '1px solid rgba(245,243,239,0.07)' }}
         ref={benefitsRef}
       >
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-14 text-center">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {BENEFITS.map(({ heading, body }, i) => (
             <div
               key={heading}
@@ -273,7 +273,7 @@ export default function Home() {
                 transitionDelay: benefitsVisible ? `${i * 0.18}s` : '0s',
               }}
             >
-              <div className="flex justify-center mb-5">
+              <div className="flex justify-center mb-3">
                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
                   <circle cx="13" cy="13" r="9" stroke="#C4885A" strokeWidth="1.2" />
                   <circle cx="13" cy="13" r="2" fill="#C4885A" />
@@ -292,7 +292,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 4 — WAITLIST */}
-      <section className="bg-[#F5F3EF] px-6 py-24" ref={formRef}>
+      <section className="bg-[#F5F3EF] px-6 py-12" ref={formRef}>
         <div
           className="max-w-md mx-auto"
           style={{
@@ -326,7 +326,7 @@ export default function Home() {
               >
                 Be among the first.
               </h2>
-              <p className="text-[#9E9791] text-sm md:text-base text-center mb-10 leading-relaxed font-light">
+              <p className="text-[#9E9791] text-sm md:text-base text-center mb-6 leading-relaxed font-light">
                 Join the waitlist for early access and an exclusive discount when we launch.
               </p>
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -369,7 +369,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-[#0D0D0D] py-8 text-center">
+      <footer className="bg-[#0D0D0D] py-6 text-center">
         <p className="text-[#9E9791] text-xs tracking-widest">
           © 2025 Vesi Living. All rights reserved.
         </p>
