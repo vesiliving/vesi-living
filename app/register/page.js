@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
+
 export default function Register() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -172,6 +173,9 @@ export default function Register() {
 
       {/* Footer */}
       <footer className="bg-[#0D0D0D] py-8 text-center">
+        <a href="https://www.instagram.com/vesiliving" target="_blank" rel="noopener noreferrer" className="inline-block text-[#9E9791] hover:text-[#C4885A] transition-colors duration-200 mb-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+        </a>
         <p className="text-[#9E9791] text-xs tracking-widest">
           © 2025 Vesi Living. All rights reserved.
         </p>
