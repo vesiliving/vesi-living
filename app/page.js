@@ -157,6 +157,13 @@ export default function Home() {
     }
   }
 
+  useEffect(() => {
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.src = 'https://w.behold.so/widget.js';
+    document.head.append(s);
+  }, []);
+
   const wordCount = HEADLINE_1.length + HEADLINE_2.length;
 
   return (
@@ -367,6 +374,31 @@ export default function Home() {
             </>
           )}
         </div>
+      </section>
+
+      {/* SECTION 5 — INSTAGRAM FEED */}
+      <section className="bg-[#0D0D0D] px-6 pt-12 pb-12" style={{ borderTop: '1px solid rgba(245,243,239,0.07)' }}>
+        <div className="text-center mb-6">
+          <a
+            href="https://www.instagram.com/vesiliving"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[10px] tracking-[0.45em] uppercase font-light mb-3 hover:opacity-70 transition-opacity duration-200"
+            style={{ color: '#C4885A', display: 'block' }}
+          >
+            Follow Us On Instagram
+          </a>
+          <div className="mx-auto mb-4 w-8 h-px bg-[#C4885A]" />
+          <a
+            href="https://www.instagram.com/vesiliving"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#9E9791] text-sm tracking-widest hover:text-[#C4885A] transition-colors duration-200"
+          >
+            @vesiliving
+          </a>
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: '<behold-widget feed-id="zWL6PsunoxJ2sP2YocrE"></behold-widget>' }} />
       </section>
 
       {/* FOOTER */}
