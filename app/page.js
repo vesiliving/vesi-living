@@ -91,7 +91,7 @@ function ProductCarousel() {
           className="text-[10px] tracking-[0.25em] uppercase font-light mt-1"
           style={{ color: '#9E9791', opacity: transitioning ? 0 : 1, transition: 'opacity 0.75s ease' }}
         >
-          Coming Soon
+          {activeProduct.available ? 'Available Now On Amazon' : 'Coming Soon'}
         </p>
       </div>
     </div>

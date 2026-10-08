@@ -30,12 +30,10 @@ function ProductCard({ name, finish, description, amazonUrl, comingSoon, imageSr
         </h3>
         <p className="text-[#9E9791] text-sm leading-relaxed font-light mb-6 flex-1">{description}</p>
         <div className="flex items-center justify-between">
-          <span
-            className="text-2xl font-light text-[#0D0D0D]"
-            style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}
-          >
-            $79.99
-          </span>
+          <div style={{ fontFamily: 'var(--font-cormorant), Georgia, serif' }}>
+            <span className="text-2xl font-light text-[#0D0D0D]">$38.95</span>
+            <span className="text-base font-light text-[#9E9791] line-through ml-2">$48.95</span>
+          </div>
           {comingSoon ? (
             <span className="border border-[#C4885A] text-[#C4885A] text-xs tracking-[0.2em] uppercase font-light px-6 py-3">
               Coming Soon
@@ -47,7 +45,7 @@ function ProductCard({ name, finish, description, amazonUrl, comingSoon, imageSr
               rel="noopener noreferrer"
               className="bg-[#C4885A] text-[#F5F3EF] text-xs tracking-[0.2em] uppercase font-light px-6 py-3 transition-colors duration-300 hover:bg-[#0D0D0D]"
             >
-              View on Amazon
+              Available Now
             </a>
           )}
         </div>
@@ -86,14 +84,14 @@ export default function Products() {
             name="Vesi Filtered Shower Head"
             finish="Black / Copper"
             description="Our signature finish — a matte black body with copper-toned filter housing. KDF-55 and activated carbon dual filtration. Removes chlorine, heavy metals, and impurities for visibly healthier skin and hair. Fits all standard shower arms."
-            amazonUrl="#"
+            amazonUrl="https://www.amazon.com/dp/B0H6GN7MCP?th=1"
             imageSrc="/product-black-copper.png"
           />
           <ProductCard
             name="Vesi Filtered Shower Head"
             finish="White / Chrome"
             description="A clean, minimal profile in bright white with a polished chrome filter housing. Identical filtration performance to the Black/Copper, designed for lighter bathrooms and modern Scandinavian interiors. Universal shower arm fitting."
-            amazonUrl="#"
+            amazonUrl="https://www.amazon.com/dp/B0GXYM6C6M?th=1"
             imageSrc="/product-white-chrome.png"
           />
           <ProductCard
