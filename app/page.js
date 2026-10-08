@@ -259,7 +259,7 @@ export default function Home() {
               transitionDelay: `${wordCount * 0.08 + 0.35}s`,
             }}
           >
-            The Vesi Filtered Showerhead.<br />Launching Soon.
+            The Vesi Filtered Showerhead.<br />Available Now on Amazon.
           </p>
         </div>
       </section>

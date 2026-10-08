@@ -22,8 +22,8 @@ function useReveal(threshold = 0.15) {
 const HOTSPOTS = [
   {
     id: 'kdf',
-    top: '8%',
-    left: '62%',
+    top: '19.25%',
+    left: '68.5%',
     title: 'KDF-55 Filter',
     stage: 'STAGE 01',
     description: 'High-purity copper-zinc alloy that neutralises contaminants through a redox reaction at the point of contact.',
@@ -35,8 +35,8 @@ const HOTSPOTS = [
   },
   {
     id: 'dial',
-    top: '38%',
-    left: '64%',
+    top: '46.7%',
+    left: '60%',
     title: 'Pressure Control Dial',
     stage: 'FEATURE',
     description: 'Rotate to dial in your perfect water pressure — from a gentle mist to a powerful stream.',
@@ -48,8 +48,8 @@ const HOTSPOTS = [
   },
   {
     id: 'pp',
-    top: '62%',
-    left: '62%',
+    top: '66.75%',
+    left: '54.5%',
     title: 'PP Cotton Filter',
     stage: 'STAGE 02',
     description: 'Precision mechanical barrier capturing fine sediment, rust, and suspended solids before they reach your skin.',
@@ -62,8 +62,8 @@ const HOTSPOTS = [
   },
   {
     id: 'thread',
-    top: '88%',
-    left: '60%',
+    top: '94%',
+    left: '45.4%',
     title: 'Universal ½″ BSP Thread',
     stage: 'UNIVERSAL FIT',
     description: 'Standard connector compatible with all shower arms worldwide. No tools or adaptors required.',
@@ -130,7 +130,7 @@ export default function Technology() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 pt-10">
 
           {/* Product image with hotspots */}
-          <div className="relative flex-shrink-0 mx-auto" style={{ width: '280px', height: '520px' }}>
+          <div className="relative flex-shrink-0 mx-auto" style={{ width: '510px', aspectRatio: '1 / 1' }}>
             <Image
               src="/product-white-copper.png"
               alt="Vesi Showerhead"
